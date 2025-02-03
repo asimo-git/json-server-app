@@ -1,1 +1,1 @@
-# json-server-app
+# React + TypeScript + Vite
