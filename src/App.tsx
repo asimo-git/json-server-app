@@ -1,9 +1,11 @@
 import "./App.css";
+import SeminarList from "./components/SeminarList";
 
 function App() {
   return (
     <>
-      <h1>Vite + React</h1>
+      <h1>Предстоящие семинары</h1>
+      <SeminarList />
     </>
   );
 }
