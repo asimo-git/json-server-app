@@ -6,3 +6,10 @@ export interface Seminar {
   time: string;
   photo: string;
 }
+
+type NotificationType = "error" | "success";
+
+export interface Notification {
+  message: string;
+  type: NotificationType;
+}
