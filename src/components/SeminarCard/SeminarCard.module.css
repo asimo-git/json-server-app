@@ -1,0 +1,28 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--bg-card-color);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 320px;
+  margin: 10px;
+  transition: all 0.4s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(103%);
+  box-shadow: 0 6px 15px var(--shadow-color);
+}
+
+.photo {
+  width: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.description {
+  flex-grow: 1;
+}

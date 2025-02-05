@@ -1,6 +1,7 @@
 import { FormEvent, useState } from "react";
-import { formatDateForInput, formatDateForServer } from "../utils/helpers";
-import { Seminar } from "../utils/interfaces";
+import { formatDateForInput, formatDateForServer } from "../../utils/helpers";
+import { Seminar } from "../../utils/interfaces";
+import styles from "./SeminarEditForm.module.css";
 
 interface SeminarEditFormProps {
   seminar: Seminar;
@@ -38,10 +39,11 @@ export default function SeminarEditForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="seminar-edit-form">
-      <div className="form-group">
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <div className={styles.formGroup}>
         <label htmlFor="title">Название семинара</label>
         <input
+          className={styles.input}
           type="text"
           id="title"
           name="title"
@@ -51,9 +53,10 @@ export default function SeminarEditForm({
         />
       </div>
 
-      <div className="form-group">
+      <div className={styles.formGroup}>
         <label htmlFor="description">Описание</label>
         <textarea
+          className={styles.textarea}
           id="description"
           name="description"
           value={formData.description}
@@ -63,10 +66,11 @@ export default function SeminarEditForm({
         />
       </div>
 
-      <div className="form-row">
-        <div className="form-group">
+      <div className={styles.formRow}>
+        <div className={styles.formGroup}>
           <label htmlFor="date">Дата</label>
           <input
+            className={styles.input}
             type="date"
             id="date"
             name="date"
@@ -76,9 +80,10 @@ export default function SeminarEditForm({
           />
         </div>
 
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label htmlFor="time">Время</label>
           <input
+            className={styles.input}
             type="time"
             id="time"
             name="time"
@@ -89,9 +94,10 @@ export default function SeminarEditForm({
         </div>
       </div>
 
-      <div className="form-group">
+      <div className={styles.formGroup}>
         <label htmlFor="photo">Ссылка на фото</label>
         <input
+          className={styles.input}
           type="url"
           id="photo"
           name="photo"

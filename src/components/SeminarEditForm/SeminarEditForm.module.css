@@ -1,0 +1,39 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 500px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.formRow {
+  display: flex;
+  gap: 15px;
+}
+
+.formRow .formGroup {
+  flex: 1;
+}
+
+.input,
+.textarea {
+  padding: 8px;
+  border: 1px solid var(--accent-color);
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.input {
+  min-height: 40px;
+}
+
+@media (max-width: 600px) {
+  .form {
+    width: 80vw;
+  }
+}

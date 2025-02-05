@@ -3,12 +3,13 @@ import {
   deleteSeminar,
   getSeminars,
   updateSeminar,
-} from "../api/json-server-seminars";
-import { Notification, Seminar } from "../utils/interfaces";
-import { Modal } from "./Modal";
-import { PopUp } from "./PopUp";
-import SeminarCard from "./SeminarCard";
-import SeminarEditForm from "./SeminarEditForm";
+} from "../../api/json-server-seminars";
+import { Notification, Seminar } from "../../utils/interfaces";
+import { Modal } from "../Modal/Modal";
+import { PopUp } from "../PopUp/PopUp";
+import SeminarCard from "../SeminarCard/SeminarCard";
+import SeminarEditForm from "../SeminarEditForm/SeminarEditForm";
+import styles from "./SeminarList.module.css";
 
 export default function SeminarList() {
   const [seminars, setSeminars] = useState<Seminar[]>([]);
@@ -82,7 +83,7 @@ export default function SeminarList() {
   return (
     <>
       {loading && (
-        <img className="loader" src="/loader.gif" alt="Загрузка..." />
+        <img className={styles.loader} src="/loader.gif" alt="Загрузка..." />
       )}
 
       {notification && (
@@ -92,7 +93,7 @@ export default function SeminarList() {
         />
       )}
 
-      <div className="seminar-list">
+      <div className={styles.seminarList}>
         {seminars.map((seminar) => (
           <SeminarCard
             key={seminar.id}

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { Notification } from "../utils/interfaces";
+import { Notification } from "../../utils/interfaces";
+import styles from "./PopUp.module.css";
 
 interface PopUpProps {
   notification: Notification;
@@ -13,7 +14,7 @@ export function PopUp({ notification, onClose, delay = 3000 }: PopUpProps) {
   }, []);
 
   return (
-    <div className={`notification ${notification.type}`}>
+    <div className={`${styles.notification} ${styles[notification.type]}`}>
       {notification.message}
     </div>
   );

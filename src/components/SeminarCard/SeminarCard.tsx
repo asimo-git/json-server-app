@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Seminar } from "../utils/interfaces";
+import { Seminar } from "../../utils/interfaces";
+import styles from "./SeminarCard.module.css";
 
 interface SeminarCardProps {
   seminar: Seminar;
@@ -21,18 +22,22 @@ export default function SeminarCard({
 
   return (
     <>
-      <div className="seminar-card">
+      <div className={styles.card}>
         <img
-          className="card-photo"
+          className={styles.photo}
           src={imgSrc}
           alt="Фотография с семинара"
           onError={handleImageError}
         />
-        <h2>{seminar.title}</h2>
-        <p>{seminar.description}</p>
-        <p>Дата: {seminar.date}</p>
-        <p>Время: {seminar.time}</p>
-        <div className="button-container">
+        <div className={styles.description}>
+          <h2>{seminar.title}</h2>
+          <p>{seminar.description}</p>
+        </div>
+        <div className="flex-container">
+          <p>Дата: {seminar.date}</p>
+          <p>Время: {seminar.time}</p>
+        </div>
+        <div className="flex-container">
           <button onClick={onUpdate}>Редактировать</button>
           <button onClick={onDelete}>Удалить</button>
         </div>

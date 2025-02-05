@@ -1,3 +1,5 @@
+import styles from "./Modal.module.css";
+
 interface ModalProps {
   onCancel?: () => void;
   children: React.ReactNode;
@@ -14,18 +16,18 @@ export function Modal({
   onConfirm,
 }: ModalProps) {
   return (
-    <div className="overlay">
-      <div className="modal-content">
+    <div className={styles.overlay}>
+      <div className={styles.modalContent}>
         {children}
         {(onCancel || onConfirm) && (
-          <div className="button-container">
+          <div className="flex-container">
             {onConfirm && (
-              <button className="confirm-btn" onClick={onConfirm}>
+              <button className={styles.confirmBtn} onClick={onConfirm}>
                 {confirmText}
               </button>
             )}
             {onCancel && (
-              <button className="cancel-btn" onClick={onCancel}>
+              <button className={styles.cancelBtn} onClick={onCancel}>
                 {cancelText}
               </button>
             )}
