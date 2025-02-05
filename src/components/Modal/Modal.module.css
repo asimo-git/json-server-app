@@ -11,17 +11,24 @@
 }
 
 .modalContent {
+  position: relative;
   background: white;
   padding: 20px;
   border-radius: 10px;
   text-align: center;
 }
 
-.confirmBtn {
-  background: var(--second-color);
-  color: white;
+.closeButton {
+  position: absolute;
+  top: 0;
+  right: 0.5em;
+  background: none;
+  border: none;
+  font-size: 24px;
+  padding: 0;
 }
 
-.cancelBtn {
-  background: var(--bg-color);
+.closeButton:focus,
+.closeButton:focus-visible {
+  outline: none;
 }

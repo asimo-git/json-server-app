@@ -105,17 +105,15 @@ export default function SeminarList() {
       </div>
 
       {deletingSeminar && (
-        <Modal
-          onConfirm={handleDelete}
-          onCancel={() => setDeletingSeminar(null)}
-        >
+        <Modal onClose={() => setDeletingSeminar(null)}>
           {" "}
           <p>Вы уверены, что хотите удалить семинар?</p>
+          <button onClick={handleDelete}>Подтвердить</button>
         </Modal>
       )}
 
       {updatingSeminar && (
-        <Modal onCancel={() => setUpdatingSeminar(null)}>
+        <Modal onClose={() => setUpdatingSeminar(null)}>
           <SeminarEditForm seminar={updatingSeminar} onSubmit={handleUpdate} />
         </Modal>
       )}

@@ -1,38 +1,24 @@
 import styles from "./Modal.module.css";
 
 interface ModalProps {
-  onCancel?: () => void;
+  onClose: () => void;
   children: React.ReactNode;
-  confirmText?: string;
-  cancelText?: string;
-  onConfirm?: () => void;
 }
 
-export function Modal({
-  onCancel,
-  children,
-  confirmText = "Подтвердить",
-  cancelText = "Отмена",
-  onConfirm,
-}: ModalProps) {
+export function Modal({ onClose, children }: ModalProps) {
+  const handleOverlayClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <div className={styles.overlay}>
+    <div className={styles.overlay} onClick={handleOverlayClick}>
       <div className={styles.modalContent}>
+        <button className={styles.closeButton} onClick={onClose}>
+          &times;
+        </button>
         {children}
-        {(onCancel || onConfirm) && (
-          <div className="flex-container">
-            {onConfirm && (
-              <button className={styles.confirmBtn} onClick={onConfirm}>
-                {confirmText}
-              </button>
-            )}
-            {onCancel && (
-              <button className={styles.cancelBtn} onClick={onCancel}>
-                {cancelText}
-              </button>
-            )}
-          </div>
-        )}
       </div>
     </div>
   );
