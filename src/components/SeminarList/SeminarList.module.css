@@ -5,6 +5,14 @@
   padding: 0 2rem;
 }
 
+.acceptBtn {
+  width: 150px;
+}
+
 .loader {
   width: 100px;
+}
+
+.smallLoader {
+  width: 18px;
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import { Seminar } from "../../utils/interfaces";
 import styles from "./SeminarCard.module.css";
 
@@ -8,7 +8,7 @@ interface SeminarCardProps {
   onUpdate: () => void;
 }
 
-export default function SeminarCard({
+const SeminarCard = memo(function SeminarCard({
   seminar,
   onDelete,
   onUpdate,
@@ -44,4 +44,6 @@ export default function SeminarCard({
       </div>
     </>
   );
-}
+});
+
+export default SeminarCard;

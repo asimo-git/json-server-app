@@ -6,11 +6,13 @@ import styles from "./SeminarEditForm.module.css";
 interface SeminarEditFormProps {
   seminar: Seminar;
   onSubmit: (updatedSeminar: Seminar) => void;
+  loading: boolean;
 }
 
 export default function SeminarEditForm({
   seminar,
   onSubmit,
+  loading,
 }: SeminarEditFormProps) {
   const [formData, setFormData] = useState<Seminar>({
     ...seminar,
@@ -109,7 +111,15 @@ export default function SeminarEditForm({
       </div>
 
       <button type="submit" className="confirm-btn">
-        Сохранить
+        {loading ? (
+          <img
+            className={styles.smallLoader}
+            src="/loader.gif"
+            alt="Загрузка..."
+          />
+        ) : (
+          "Сохранить"
+        )}
       </button>
     </form>
   );

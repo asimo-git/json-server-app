@@ -32,6 +32,10 @@
   min-height: 40px;
 }
 
+.smallLoader {
+  width: 18px;
+}
+
 @media (max-width: 600px) {
   .form {
     width: 80vw;
