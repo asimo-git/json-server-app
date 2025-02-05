@@ -1,16 +1,21 @@
 import { useCallback, useEffect, useState } from "react";
-import { deleteSeminar, getSeminars } from "../api/json-server-seminars";
+import {
+  deleteSeminar,
+  getSeminars,
+  updateSeminar,
+} from "../api/json-server-seminars";
 import { Notification, Seminar } from "../utils/interfaces";
 import { Modal } from "./Modal";
 import { PopUp } from "./PopUp";
 import SeminarCard from "./SeminarCard";
+import SeminarEditForm from "./SeminarEditForm";
 
 export default function SeminarList() {
   const [seminars, setSeminars] = useState<Seminar[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [notification, setNotification] = useState<Notification | null>(null);
   const [deletingSeminar, setDeletingSeminar] = useState<number | null>(null);
-  // const [updatingSeminar, setUpdatingSeminar] = useState<number | null>(null);
+  const [updatingSeminar, setUpdatingSeminar] = useState<Seminar | null>(null);
 
   const fetchSeminars = async () => {
     try {
@@ -49,6 +54,27 @@ export default function SeminarList() {
     }
   }, [deletingSeminar]);
 
+  const handleUpdate = useCallback(
+    async (updatedData: Seminar) => {
+      try {
+        await updateSeminar(updatedData);
+        setNotification({
+          message: "Изменения сохранены!",
+          type: "success",
+        });
+        fetchSeminars();
+      } catch {
+        setNotification({
+          message: "Не удалось обновить семинар, попробуйте позже.",
+          type: "error",
+        });
+      } finally {
+        setUpdatingSeminar(null);
+      }
+    },
+    [deletingSeminar]
+  );
+
   useEffect(() => {
     fetchSeminars();
   }, []);
@@ -58,6 +84,7 @@ export default function SeminarList() {
       {loading && (
         <img className="loader" src="/loader.gif" alt="Загрузка..." />
       )}
+
       {notification && (
         <PopUp
           notification={notification}
@@ -71,6 +98,7 @@ export default function SeminarList() {
             key={seminar.id}
             seminar={seminar}
             onDelete={() => setDeletingSeminar(seminar.id)}
+            onUpdate={() => setUpdatingSeminar(seminar)}
           />
         ))}
       </div>
@@ -82,6 +110,12 @@ export default function SeminarList() {
         >
           {" "}
           <p>Вы уверены, что хотите удалить семинар?</p>
+        </Modal>
+      )}
+
+      {updatingSeminar && (
+        <Modal onCancel={() => setUpdatingSeminar(null)}>
+          <SeminarEditForm seminar={updatingSeminar} onSubmit={handleUpdate} />
         </Modal>
       )}
     </>

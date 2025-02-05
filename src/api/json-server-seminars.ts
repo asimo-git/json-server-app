@@ -28,3 +28,11 @@ export function deleteSeminar(id: number): Promise<void> {
     method: "DELETE",
   });
 }
+
+export function updateSeminar(updatedData: Seminar): Promise<Seminar> {
+  return fetchWithErrorHandling<Seminar>(`${SEMINARS_URL}/${updatedData.id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(updatedData),
+  });
+}

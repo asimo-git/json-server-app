@@ -1,9 +1,9 @@
 interface ModalProps {
-  onCancel: () => void;
+  onCancel?: () => void;
   children: React.ReactNode;
   confirmText?: string;
   cancelText?: string;
-  onConfirm: () => void;
+  onConfirm?: () => void;
 }
 
 export function Modal({
@@ -17,14 +17,20 @@ export function Modal({
     <div className="overlay">
       <div className="modal-content">
         {children}
-        <div className="button-container">
-          <button className="confirm-btn" onClick={onConfirm}>
-            {confirmText}
-          </button>
-          <button className="cancel-btn" onClick={onCancel}>
-            {cancelText}
-          </button>
-        </div>
+        {(onCancel || onConfirm) && (
+          <div className="button-container">
+            {onConfirm && (
+              <button className="confirm-btn" onClick={onConfirm}>
+                {confirmText}
+              </button>
+            )}
+            {onCancel && (
+              <button className="cancel-btn" onClick={onCancel}>
+                {cancelText}
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
