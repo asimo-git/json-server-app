@@ -12,7 +12,7 @@ async function fetchWithErrorHandling<T>(
       throw new Error(`Ошибка ${response.status}: ${response.statusText}`);
     }
 
-    return response.json();
+    return response.json() as T;
   } catch (error) {
     console.error("Ошибка при запросе:", error);
     throw error;

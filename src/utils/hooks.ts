@@ -41,7 +41,7 @@ export function useSeminars() {
         setNotification({ message: errorMessage, type: "error" });
       } finally {
         setLoading(false);
-        fetchSeminars();
+        void fetchSeminars();
       }
     },
     [fetchSeminars]

@@ -25,8 +25,8 @@ export default function SeminarList() {
 
   // Загружаем список семинаров при монтировании компонента.
   useEffect(() => {
-    fetchSeminars();
-  }, []);
+    void fetchSeminars();
+  }, [fetchSeminars]);
 
   const handleDelete = useCallback(async () => {
     if (!deletingSeminar) return;
@@ -74,7 +74,10 @@ export default function SeminarList() {
             <Modal onClose={() => setDeletingSeminar(null)}>
               {" "}
               <p>Вы уверены, что хотите удалить семинар?</p>
-              <button className={styles.acceptBtn} onClick={handleDelete}>
+              <button
+                className={styles.acceptBtn}
+                onClick={() => void handleDelete()}
+              >
                 {/* Отображение лоадера на кнопке после нажатия кнопки */}
                 {loading ? (
                   <img
@@ -92,7 +95,7 @@ export default function SeminarList() {
             <Modal onClose={() => setUpdatingSeminar(null)}>
               <SeminarEditForm
                 seminar={updatingSeminar}
-                onSubmit={handleUpdate}
+                onSubmit={(data) => void handleUpdate(data)}
                 loading={loading}
               />
             </Modal>
